@@ -28,8 +28,7 @@ class MainActivity : AppCompatActivity() {
         // Unity 실행 버튼
         binding.btnStartUnity.setOnClickListener {
             viewModel.launchUnityFeature()
-            // UnityPlayerActivity를 실행하여 Unity 화면 표시
-            val intent = Intent(this, UnityPlayerActivity::class.java)
+            val intent = Intent(this, UnityHostActivity::class.java)
             startActivity(intent)
         }
 

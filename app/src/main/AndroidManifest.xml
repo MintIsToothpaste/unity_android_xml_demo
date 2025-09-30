@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-기존 Android 매니텟.
-애플리케이션 1의 앱트이트를 선택합니다.
-
-Unity 라이브러리와 연동할 때는 UnityPlayerActivity를 추가해야 합니다.
--->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -12,7 +6,7 @@ Unity 라이브러리와 연동할 때는 UnityPlayerActivity를 추가해야 �
         android:label="UnityDemoApp"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-        <!-- 메인 앱트이트 -->
+        <!-- 메인 Activity -->
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true">
@@ -22,13 +16,22 @@ Unity 라이브러리와 연동할 때는 UnityPlayerActivity를 추가해야 �
             </intent-filter>
         </activity>
 
-        <!-- Unity 플레이어 앱트이트: Unity 라이브러리에서 제공 -->
+        <!-- UnityPlayerActivity (Unity 라이브러리에서 제공) -->
         <activity
             android:name="com.unity3d.player.UnityPlayerActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|smallestScreenSize|uiMode"
             tools:replace="android:configChanges,android:exported,android:theme" />
+
+        <!-- UnityHostActivity (우리가 만든 호스트 + 오버레이) -->
+        <activity
+            android:name=".presentation.UnityHostActivity"
+            android:exported="false"
+            android:hardwareAccelerated="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|uiMode|screenLayout|density|locale|fontScale|layoutDirection|colorMode|mcc|mnc"
+            android:screenOrientation="fullSensor" />
     </application>
 
 </manifest>
