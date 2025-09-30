@@ -2,22 +2,19 @@ package com.example.unityintegration.presentation
 
 import android.os.Bundle
 import android.view.Gravity
-import android.view.View
-import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.unityintegration.R
+import com.example.unityintegration.data.UnityBridge
 import com.unity3d.player.UnityPlayerActivity
 
 class UnityHostActivity : UnityPlayerActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // super 가 이미 setContentView(mUnityPlayer) 완료
 
         // 1) 오버레이 뷰(우상단 고정) 생성
         val overlay = LinearLayoutCompat(this).apply {
@@ -29,11 +26,18 @@ class UnityHostActivity : UnityPlayerActivity() {
 
             addView(AppCompatButton(context).apply {
                 text = "Action 1"
-                setOnClickListener { /* UnitySendMessage(...) */ }
+                setOnClickListener {
+                    // Unity(GameObject="AndroidBridge", Method="ReceiveFromAndroid")로 간단 메시지 전송
+                    UnityBridge.sendMessageToUnity(
+                        gameObjectName = "AndroidBridge",
+                        methodName     = "ReceiveFromAndroid",
+                        message        = "hello_from_android"
+                    )
+                }
             })
             addView(AppCompatButton(context).apply {
                 text = "Action 2"
-                setOnClickListener { /* ... */ }
+                setOnClickListener { finish() }
             })
             addView(AppCompatTextView(context).apply {
                 text = "상태: 대기중"
