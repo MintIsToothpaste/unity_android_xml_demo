@@ -9,7 +9,7 @@ Unity 라이브러리와 연동할 때는 UnityPlayerActivity를 추가해야 �
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:label="@string/app_name"
+        android:label="UnityDemoApp"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         <!-- 메인 앱트이트 -->
